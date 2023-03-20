@@ -2,8 +2,8 @@ package com.twiddle.playground.hexagonkotlinspring.modules.article.application.p
 
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.ArticleDto
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.CreateArticleDto
-import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.mapping.fromDomain
-import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.mapping.toDomain
+import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.fromDomain
+import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.toDomain
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.service.ArticleService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -30,15 +30,13 @@ class ArticleController {
     @PostMapping("")
     fun createOne(): ArticleDto {
         return articleService.create(
-            toDomain(
-                CreateArticleDto(
-                    title = "test",
-                    body = "test",
-                    userId = 1,
-                    createdAt = LocalDateTime.now(),
-                    updatedAt = LocalDateTime.now(),
-                ),
-            ),
+            CreateArticleDto(
+                title = "test",
+                body = "test",
+                userId = 1,
+                createdAt = LocalDateTime.now(),
+                updatedAt = LocalDateTime.now(),
+            ).toDomain(),
         ).let { fromDomain(it) }
     }
 }

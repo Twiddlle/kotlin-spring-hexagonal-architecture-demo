@@ -15,7 +15,8 @@ import org.springframework.stereotype.Repository
 interface DbArticleRepositoryInterface : JpaRepository<ArticleDbEntity, Int>
 
 @Component
-class DbArticleRepository : ArticleRepository {
+class ArticleRepositoryImpl :
+    ArticleRepository {
 
     @Autowired
     lateinit var articleRepository: DbArticleRepositoryInterface

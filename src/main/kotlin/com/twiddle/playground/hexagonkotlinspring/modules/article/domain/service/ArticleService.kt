@@ -1,7 +1,7 @@
 package com.twiddle.playground.hexagonkotlinspring.modules.article.domain.service
 
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.entities.ArticleEntity
-import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.DbArticleRepository
+import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.ArticleRepositoryImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class ArticleService {
 
     @Autowired
-    lateinit var articleRepo: DbArticleRepository
+    lateinit var articleRepo: ArticleRepositoryImpl
 
     fun findById(id: Int): ArticleEntity {
         val article = articleRepo.findByIdOrNull(id) ?: throw RuntimeException("Article with id $id not found")

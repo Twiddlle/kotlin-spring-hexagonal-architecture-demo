@@ -1,4 +1,4 @@
-package com.twiddle.playground.hexagonkotlinspring.app
+package com.twiddle.playground.hexagonkotlinspring.modules.app
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

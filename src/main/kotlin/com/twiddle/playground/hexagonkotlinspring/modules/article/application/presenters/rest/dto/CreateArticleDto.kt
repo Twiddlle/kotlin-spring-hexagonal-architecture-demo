@@ -1,9 +1,8 @@
-package com.twiddle.playground.hexagonkotlinspring.modules.article.domain.entities
+package com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto
 
 import java.time.LocalDateTime
 
-data class ArticleEntity(
-    val id: Int? = null,
+data class CreateArticleDto(
     val title: String,
     val body: String,
     val userId: Int,

@@ -22,4 +22,8 @@ class ArticleService {
             updatedAt = article.updatedAt,
         )
     }
+
+    fun create(article: ArticleEntity): ArticleEntity {
+        return articleRepo.create(article)
+    }
 }

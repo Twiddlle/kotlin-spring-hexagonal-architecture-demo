@@ -3,12 +3,13 @@ package com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructur
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.entities.ArticleEntity
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.ports.ArticleRepository
 import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entity.ArticleDbEntity
+import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.mapping.fromDomain
+import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.mapping.toDomain
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
-import java.time.LocalDateTime
 
 @Repository
 interface DbArticleRepositoryInterface : JpaRepository<ArticleDbEntity, Int>
@@ -19,15 +20,8 @@ class DbArticleRepository : ArticleRepository {
     @Autowired
     lateinit var articleRepository: DbArticleRepositoryInterface
 
-    override fun findByIdOrNull(id: Int) = articleRepository.findByIdOrNull(id)
+    override fun findByIdOrNull(id: Int) =
+        articleRepository.findByIdOrNull(id).takeIf { it != null }?.let { toDomain(it) }
 
-    override fun create(article: ArticleEntity) = articleRepository.save(
-        ArticleDbEntity(
-            title = article.title,
-            body = article.body,
-            userId = article.userId,
-            createdAt = LocalDateTime.now(),
-            updatedAt = LocalDateTime.now(),
-        ),
-    )
+    override fun create(article: ArticleEntity) = articleRepository.save(fromDomain(article)).let { toDomain(it) }
 }

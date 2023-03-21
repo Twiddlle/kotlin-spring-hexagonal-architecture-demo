@@ -4,7 +4,7 @@ import com.twiddle.playground.hexagonkotlinspring.modules.article.application.pr
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.CreateArticleDto
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.fromDomain
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.toDomain
-import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.service.ArticleService
+import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.services.ArticleService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

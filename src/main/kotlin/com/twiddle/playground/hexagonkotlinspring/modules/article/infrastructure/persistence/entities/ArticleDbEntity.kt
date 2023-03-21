@@ -1,4 +1,4 @@
-package com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entity
+package com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entities
 
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.entities.ArticleEntity
 import jakarta.persistence.Entity

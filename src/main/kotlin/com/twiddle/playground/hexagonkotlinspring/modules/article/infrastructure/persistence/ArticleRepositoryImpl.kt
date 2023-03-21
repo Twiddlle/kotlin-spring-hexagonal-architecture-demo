@@ -2,9 +2,9 @@ package com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructur
 
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.entities.ArticleEntity
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.ports.ArticleRepository
-import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entity.ArticleDbEntity
-import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entity.fromDomain
-import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entity.toDomain
+import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entities.ArticleDbEntity
+import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entities.fromDomain
+import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.entities.toDomain
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.repository.findByIdOrNull

@@ -1,33 +1,27 @@
 package com.twiddle.playground.hexagonkotlinspring.modules.article.domain.services
 
+import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.aggregates.ArticleUserAggregate
 import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.entities.ArticleEntity
-import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.queries.GetUserByIdQuery
-import com.twiddle.playground.hexagonkotlinspring.modules.article.infrastructure.persistence.ArticleRepositoryImpl
-import org.axonframework.queryhandling.QueryGateway
-import org.axonframework.queryhandling.responsetypes.ResponseTypes
+import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.ports.ArticleRepository
+import com.twiddle.playground.hexagonkotlinspring.modules.article.domain.ports.ArticleUserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class ArticleService(
-    private val queryGateway: QueryGateway,
+    @Autowired private val articleRepo: ArticleRepository,
+    @Autowired private val articleUserRepository: ArticleUserRepository,
 ) {
 
-    @Autowired
-    lateinit var articleRepo: ArticleRepositoryImpl
-
-    fun findById(id: Int): ArticleEntity {
+    fun findById(id: Int): ArticleUserAggregate {
         val article = articleRepo.findByIdOrNull(id) ?: error("Article with id $id not found")
 
-        val user = queryGateway.query(GetUserByIdQuery, ResponseTypes.instanceOf())
+        val user =
+            articleUserRepository.findByIdOrNull(article.userId) ?: error("User with id ${article.userId} not found")
 
-        return ArticleEntity(
-            id = article.id!!,
-            title = article.title,
-            body = article.body,
-            userId = article.userId,
-            createdAt = article.createdAt,
-            updatedAt = article.updatedAt,
+        return ArticleUserAggregate(
+            article = article,
+            user = user,
         )
     }
 

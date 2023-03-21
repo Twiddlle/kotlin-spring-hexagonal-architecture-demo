@@ -1,6 +1,7 @@
 package com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest
 
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.ArticleDto
+import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.ArticleUserDto
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.CreateArticleDto
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.fromDomain
 import com.twiddle.playground.hexagonkotlinspring.modules.article.application.presenters.rest.dto.toDomain
@@ -23,7 +24,7 @@ class ArticleController {
     @GetMapping("{id}")
     fun findOne(
         @PathVariable id: Int,
-    ): ArticleDto {
+    ): ArticleUserDto {
         return fromDomain(articleService.findById(id))
     }
 
